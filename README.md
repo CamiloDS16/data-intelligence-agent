@@ -1,4 +1,4 @@
-# [INTENT]
+# [Parche Agent]
 Agentic data intelligence — ingest structured or unstructured records, 
 synthesize insights, and answer questions with citations, evaluation, 
 and cost observability.
@@ -12,7 +12,7 @@ Import/competitor intelligence: ingest import records → summarize who is
 importing what, surface trends, answer natural-language questions.
 
 ## Roadmap
-- [ ] Phase 1: Core agent loop (tool selection + memory)
+- [X] Phase 1: Core agent loop (tool selection + memory)
 - [ ] Phase 2: Retrieval (chunking, embeddings, vector store)
 - [ ] Phase 3: FastAPI service (ingest + query endpoints)
 - [ ] Phase 4: Evaluation + observability (LLM-as-judge, cost logging)

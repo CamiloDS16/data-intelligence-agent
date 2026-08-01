@@ -1,3 +1,8 @@
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+
 def chunk_text(text, chunk_size=500, overlap=50):
     chunks = []
     start = 0
@@ -9,6 +14,11 @@ def chunk_text(text, chunk_size=500, overlap=50):
     return chunks
 
 
+def embed_texts(texts):
+    embeddings = model.encode(texts)
+    return embeddings
+
+
 
 if __name__ == "__main__":
 # quick manual test
@@ -16,3 +26,9 @@ if __name__ == "__main__":
     texto_chunkeado = chunk_text(parrafo, chunk_size=100, overlap=20)
     for i, c in enumerate(texto_chunkeado):
         print(f"Chunk {i}: {c}")
+    
+    embeddings_texto = embed_texts(texto_chunkeado)
+    print(f"\n{len(embeddings_texto)} embeddings created")
+    print(f"Each embedding has {len(embeddings_texto[0])} dimensions")
+    print(f"First embedding preview (first 5 values): {embeddings_texto[0][:5]}")
+    
