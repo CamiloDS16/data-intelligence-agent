@@ -1,4 +1,5 @@
 from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
@@ -19,6 +20,20 @@ def embed_texts(texts):
     return embeddings
 
 
+def search(query, text, top_n=3):
+    chunks = chunk_text(text)
+    chunks_emb = (embed_texts(chunks))
+    query_embeddings = (embed_texts([query]))
+    #calculating cosine similarity scores
+    cosine_scores = cosine_similarity(query_embeddings, chunks_emb)[0]
+    # pairing chunks with their respective score
+    scored_chunks = list(zip(chunks, cosine_scores))
+    # time complexity - first sorting: sort by the score, second item in each pair ([1]), highest first (reverse=True)
+    scored_chunks.sort(key=lambda pair:pair[1], reverse=True)
+    # returns top_n
+    return [chunk for chunk, score in scored_chunks[:top_n]]
+
+
 
 if __name__ == "__main__":
 # quick manual test
@@ -31,4 +46,10 @@ if __name__ == "__main__":
     print(f"\n{len(embeddings_texto)} embeddings created")
     print(f"Each embedding has {len(embeddings_texto[0])} dimensions")
     print(f"First embedding preview (first 5 values): {embeddings_texto[0][:5]}")
+
+    result = search("Qué hace este texto?", parrafo, top_n=2)
+    print("\nTop matches:")
+    for r in result:
+        print("-", r)
+        
     
