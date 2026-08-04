@@ -1,4 +1,4 @@
-# [Parche Agent]
+# Parche Agent
 Agentic data intelligence — ingest structured or unstructured records, 
 synthesize insights, and answer questions with citations, evaluation, 
 and cost observability.
@@ -13,7 +13,7 @@ importing what, surface trends, answer natural-language questions.
 
 ## Roadmap
 - [X] Phase 1: Core agent loop (tool selection + memory)
-- [ ] Phase 2: Retrieval (chunking, embeddings, vector store)
+- [X] Phase 2: Retrieval (chunking, embeddings, vector store)
 - [ ] Phase 3: FastAPI service (ingest + query endpoints)
 - [ ] Phase 4: Evaluation + observability (LLM-as-judge, cost logging)
 - [ ] Phase 5: Docker + cloud deploy (live URL)
